@@ -53,3 +53,7 @@ include/*
 lib/*
 bin/*
 test/test_runner
+
+.ninja_log
+.ninja_deps
+build.ninja
