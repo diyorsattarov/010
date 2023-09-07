@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream>
 #include <map>
+#include <bitset> 
+#include <spdlog/spdlog.h>
 
 using namespace std;
 
@@ -40,8 +42,10 @@ string parseAInstruction(const string& instruction) {
     string address = instruction.substr(1);
     int value = stoi(address);
 
-    return bitset<16>(value).to_string();
+    bitset<16> binaryValue(value);
+    return binaryValue.to_string();
 }
+
 
 string parseCInstruction(const string& instruction) {
     string binaryInstruction = "111"; // The three leading bits for C-instructions
@@ -122,7 +126,7 @@ int main(int argc, char* argv[]) {
         cerr << "Usage: assembler input.asm output.hack" << endl;
         return 1;
     }
-
+    spdlog::info("Debug: Opening input file: {}", argv[1]);
     ifstream inputFile(argv[1]);
     ofstream outputFile(argv[2]);
 
