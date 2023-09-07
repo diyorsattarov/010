@@ -6,11 +6,13 @@ set(CMAKE_CXX_STANDARD 11)  # Set your desired C++ standard here
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/test/bin)
 
+find_package(spdlog)
+
 add_executable(test_main
 	test_main.cpp
 )
 
-target_link_libraries(test_main PRIVATE stdc++)
+target_link_libraries(test_main PRIVATE spdlog::spdlog)
 
 add_custom_target(clean_test
     COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}/test/bin
